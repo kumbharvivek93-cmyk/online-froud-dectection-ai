@@ -1,0 +1,42 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+import joblib
+import random
+
+# Generate synthetic dataset
+data = []
+
+for i in range(500):
+    amount = random.randint(100, 20000)
+    is_cod = random.randint(0, 1)
+    past_returns = random.randint(0, 5)
+    address_mismatch = random.randint(0, 1)
+
+    # Fraud logic (simple pattern)
+    fraud = 0
+    if amount > 10000 and is_cod == 1:
+        fraud = 1
+    if past_returns > 3:
+        fraud = 1
+    if address_mismatch == 1 and is_cod == 1:
+        fraud = 1
+
+    data.append([amount, is_cod, past_returns, address_mismatch, fraud])
+
+df = pd.DataFrame(data, columns=[
+    "amount",
+    "is_cod",
+    "past_returns",
+    "address_mismatch",
+    "fraud"
+])
+
+X = df.drop("fraud", axis=1)
+y = df["fraud"]
+
+model = LogisticRegression()
+model.fit(X, y)
+
+joblib.dump(model, "model.pkl")
+
+print("Model trained and saved successfully!")
