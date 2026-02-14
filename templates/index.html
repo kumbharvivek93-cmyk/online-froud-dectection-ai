@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection AI</title>
+</head>
+<body>
+    <h2>Online Order Fraud Detection</h2>
+
+    <form action="/predict" method="post">
+        Order Amount: <input type="number" name="amount" required><br><br>
+
+        Is COD? (1 = Yes, 0 = No):
+        <input type="number" name="is_cod" min="0" max="1" required><br><br>
+
+        Past Returns:
+        <input type="number" name="past_returns" required><br><br>
+
+        Address Mismatch? (1 = Yes, 0 = No):
+        <input type="number" name="address_mismatch" min="0" max="1" required><br><br>
+
+        <button type="submit">Check Risk</button>
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+
+</body>
+</html>
