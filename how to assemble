@@ -1,0 +1,10 @@
+arrange these files as ::
+
+fraud_app/
+│
+├── static/    -> style.css    ✅
+├── templates/  -> index.html   ✅
+├── venv/
+├── app.py         ✅
+├── model.pkl
+├── train_model.py
